@@ -5,9 +5,10 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Lab", href: "#projects" },
+    { name: "Experience", href: "#experience" },
+    { name: "Projects", href: "#projects" },
+    { name: "Skills", href: "#skills" },
+    { name: "Contact", href: "#contact" },
   ];
 
   return (
@@ -15,12 +16,12 @@ const Header = () => {
       <div className="container mx-auto px-6 py-4">
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#home" className="text-2xl font-display font-bold text-foreground hover:text-accent transition-colors">
-            <span className="text-gradient">K</span>
+          <a href="#home" aria-label="Abdullah Aslam – home" className="text-2xl font-display font-bold text-foreground hover:text-accent transition-colors">
+            <span className="text-gradient">AA</span>
           </a>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-12">
+          <ul className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <li key={link.name}>
                 <a
@@ -38,6 +39,7 @@ const Header = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden text-foreground p-2"
             aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

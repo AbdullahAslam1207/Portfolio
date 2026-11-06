@@ -1,87 +1,74 @@
-import crystalIcon from "@/assets/crystal-icon.png";
-import { Button } from "@/components/ui/button";
+import { Briefcase, GraduationCap } from "lucide-react";
 
-interface ExperienceCard {
-  id: number;
-  icon: string;
-  title: string;
-  description: string;
-  accentColor: 'purple' | 'pink' | 'blue' | 'orange';
-}
+const experience = {
+  role: "Associate AI Engineer",
+  company: "Developers Den",
+  period: "Jan 2025 – Present",
+  highlights: [
+    "Built LLM-powered backend services with FastAPI and Flask, integrating generative AI models into 3 production systems used by active clients.",
+    "Designed RAG pipelines and chatbot systems with LangChain, Hugging Face Transformers and the OpenAI APIs, cutting average query latency by ~35%.",
+    "Deployed scalable, microservice-based ML infrastructure on AWS (EC2, S3, Lambda) for data-intensive AI workloads, sustaining 99%+ uptime.",
+    "Optimized PostgreSQL schemas and queries for backend components handling 500+ AI-generated interactions per day.",
+    "Automated CI/CD pipelines with Docker and GitHub Actions, reducing deployment time by ~40% across AI services.",
+  ],
+};
 
-const experiences: ExperienceCard[] = [
-  {
-    id: 1,
-    icon: crystalIcon,
-    title: "Associate AI Engineer – Developers Den",
-    description: "Design and develop NLP-driven applications using FastAPI and Flask, integrating Generative AI models into production-ready backend services.",
-    accentColor: 'purple',
-  },
-  {
-    id: 2,
-    icon: crystalIcon,
-    title: "Intelligent Chatbot & RAG Systems",
-    description: "Build intelligent chatbot and retrieval-augmented generation (RAG) systems using LangChain, Hugging Face Transformers, and OpenAI APIs.",
-    accentColor: 'pink',
-  },
-  {
-    id: 3,
-    icon: crystalIcon,
-    title: "ML Model Deployment & Optimization",
-    description: "Deploy and optimize ML models with a focus on scalable, modular, and maintainable architecture.",
-    accentColor: 'blue',
-  },
-  {
-    id: 4,
-    icon: crystalIcon,
-    title: "Backend & Database Integration",
-    description: "Apply strong fundamentals of SQL, database design, and operating systems concepts while supporting data-intensive and backend components of AI systems.",
-    accentColor: 'orange',
-  },
-];
-
-const accentColors = {
-  purple: 'from-purple-500/20 to-transparent',
-  pink: 'from-pink-500/20 to-transparent',
-  blue: 'from-blue-500/20 to-transparent',
-  orange: 'from-orange-500/20 to-transparent',
+const education = {
+  school: "National University of Computers and Emerging Sciences (FAST-NUCES)",
+  degree: "Bachelor of Computer Science",
+  period: "Aug 2022 – 2026",
+  detail: "CGPA: 3.36 / 4.0",
 };
 
 const WorkExperience = () => {
   return (
-    <section id="about" className="py-20 relative">
-      <div className="container mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-12 animate-fade-in text-center">
-          Work Experience
+    <section id="experience" className="py-20 relative scroll-mt-20">
+      <div className="container mx-auto px-6 max-w-4xl">
+        <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-12 text-center">
+          Experience
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {experiences.map((exp, index) => (
-            <div
-              key={exp.id}
-              className="glass-card gradient-border rounded-xl p-6 hover-glow transition-all duration-300 group animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Gradient overlay */}
-              <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${accentColors[exp.accentColor]} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-              
-              <div className="relative z-10 flex gap-4">
-                <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
-                  <img src={exp.icon} alt="" className="w-full h-full object-cover" />
-                </div>
-                
-                <div className="flex-1">
-                  <h3 className="font-display font-semibold text-foreground mb-2">
-                    {exp.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
-                    {exp.description}
-                  </p>
-                </div>
+        <article className="glass-card gradient-border rounded-xl p-6 md:p-8 hover-glow animate-slide-up">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-5">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-lg bg-primary/15 text-accent flex items-center justify-center flex-shrink-0">
+                <Briefcase size={24} aria-hidden="true" />
+              </div>
+              <div>
+                <h3 className="text-xl font-display font-semibold text-foreground">{experience.role}</h3>
+                <p className="text-accent text-sm">{experience.company}</p>
               </div>
             </div>
-          ))}
-        </div>
+            <p className="text-muted-foreground text-sm font-mono sm:text-right">{experience.period}</p>
+          </div>
+
+          <ul className="space-y-3 list-disc pl-5 marker:text-accent">
+            {experience.highlights.map((point) => (
+              <li key={point} className="text-muted-foreground text-sm leading-relaxed">
+                {point}
+              </li>
+            ))}
+          </ul>
+        </article>
+
+        <h2 id="education" className="text-3xl md:text-4xl font-display font-bold text-foreground mt-16 mb-8 text-center scroll-mt-20">
+          Education
+        </h2>
+        <article className="glass-card gradient-border rounded-xl p-6 md:p-8 animate-slide-up">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-lg bg-primary/15 text-accent flex items-center justify-center flex-shrink-0">
+                <GraduationCap size={24} aria-hidden="true" />
+              </div>
+              <div>
+                <h3 className="text-lg font-display font-semibold text-foreground">{education.school}</h3>
+                <p className="text-accent text-sm">{education.degree}</p>
+                <p className="text-muted-foreground text-sm mt-1">{education.detail}</p>
+              </div>
+            </div>
+            <p className="text-muted-foreground text-sm font-mono sm:text-right whitespace-nowrap">{education.period}</p>
+          </div>
+        </article>
       </div>
     </section>
   );
